@@ -24,6 +24,11 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         let addElementButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addElement(_:)))
         navigationItem.rightBarButtonItem = addElementButton
         
+        // Set title
+        if let websitePage = websitePage{
+            title = websitePage.pageName
+        }
+        
         // Reload colletion view
         reloadCollectionView()
     }
@@ -70,6 +75,7 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         cell.elementName.text = element.elementName
         return cell
     }
+    
     // MARK:- UICollectionView delegate
     
     // MARK:- Helpers

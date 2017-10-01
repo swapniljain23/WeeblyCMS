@@ -70,7 +70,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R74-q7-7KQ" secondAttribute="trailing" constant="16" id="N8r-pd-Y9R"/>
                             <constraint firstItem="Dq6-oe-dfm" firstAttribute="top" secondItem="R74-q7-7KQ" secondAttribute="bottom" constant="60" id="NoN-lt-JyB"/>
@@ -107,30 +107,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xJ3-qS-W9D">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dzR-k4-VhC">
-                                    <size key="itemSize" width="200" height="200"/>
+                                <rect key="frame" x="20" y="80" width="335" height="567"/>
+                                <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="dzR-k4-VhC">
+                                    <size key="itemSize" width="170" height="170"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ElementCell" id="Jkj-8s-VHg" customClass="ElementCollectionViewCell" customModule="WeeblyCMS" customModuleProvider="target">
-                                        <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
+                                        <rect key="frame" x="82.5" y="0.0" width="170" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whj-BX-edm">
-                                                    <rect key="frame" x="20" y="20" width="160" height="160"/>
+                                                    <rect key="frame" x="20" y="20" width="130" height="130"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="Whj-BX-edm" firstAttribute="top" secondItem="Jkj-8s-VHg" secondAttribute="top" constant="20" id="1Xd-7J-sxS"/>
                                             <constraint firstAttribute="bottom" secondItem="Whj-BX-edm" secondAttribute="bottom" constant="20" id="JK1-fV-AEq"/>
@@ -148,12 +149,12 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="xJ3-qS-W9D" firstAttribute="trailing" secondItem="qgZ-hS-Suu" secondAttribute="trailing" id="5fl-E1-93o"/>
-                            <constraint firstItem="xJ3-qS-W9D" firstAttribute="leading" secondItem="qgZ-hS-Suu" secondAttribute="leading" id="CHb-5g-wbp"/>
+                            <constraint firstItem="xJ3-qS-W9D" firstAttribute="leading" secondItem="qgZ-hS-Suu" secondAttribute="leading" constant="20" id="CHb-5g-wbp"/>
                             <constraint firstItem="xJ3-qS-W9D" firstAttribute="top" secondItem="qgZ-hS-Suu" secondAttribute="top" constant="60" id="RGt-HR-KkC"/>
-                            <constraint firstItem="qgZ-hS-Suu" firstAttribute="bottom" secondItem="xJ3-qS-W9D" secondAttribute="bottom" id="sGW-ex-cY6"/>
+                            <constraint firstAttribute="trailing" secondItem="xJ3-qS-W9D" secondAttribute="trailing" constant="20" id="lKh-y1-GxA"/>
+                            <constraint firstItem="qgZ-hS-Suu" firstAttribute="bottom" secondItem="xJ3-qS-W9D" secondAttribute="bottom" constant="20" id="sGW-ex-cY6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qgZ-hS-Suu"/>
                     </view>
@@ -201,7 +202,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="7P7-s7-89s"/>
                                 </constraints>
-                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Create Website" id="ydI-CA-IEE">
                                         <barButtonItem key="leftBarButtonItem" enabled="NO" systemItem="cancel" id="hGR-uU-Gxt">
@@ -218,7 +219,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="GKz-5j-4rY" firstAttribute="leading" secondItem="rzZ-Yq-NsI" secondAttribute="leading" constant="20" id="3dN-Ao-EHS"/>
                             <constraint firstItem="ejm-Pe-GdH" firstAttribute="top" secondItem="pWn-VO-sSN" secondAttribute="top" constant="20" id="7OD-f8-A8M"/>
@@ -268,7 +269,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RO9-a2-cOD"/>
                                 </constraints>
-                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="New Page" id="JYw-Ai-I9b">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7ex-HI-MT7">
@@ -299,7 +300,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="lSV-R6-kL5" firstAttribute="trailing" secondItem="Uml-2n-ztw" secondAttribute="trailing" constant="16" id="3Mt-0w-c3Z"/>
                             <constraint firstItem="Uml-2n-ztw" firstAttribute="top" secondItem="krk-L0-6nT" secondAttribute="bottom" constant="40" id="5a7-hs-AUP"/>
