@@ -49,11 +49,17 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Preceed with loading website
         myWebsitePages.removeAll()
-        print("Website Name: \(myWebsite.websiteName)")
+        print("My Website: \(myWebsite.websiteName)")
         websiteTitle.text = myWebsite.websiteName
         for page in websitePages{
             let pageObj = page as! Page
-            print("PAGE# \(pageObj.pageOrder): \(pageObj.pageName)")
+            print("\tPAGE# \(pageObj.pageOrder): \(pageObj.pageName)")
+            if let elements = pageObj.elements{
+                for element in elements{
+                    let elementObj = element as! Element
+                    print("\t\tElement# \(elementObj.elementOrder): \(elementObj.elementName) -> \(elementObj.elementDescription)")
+                }
+            }
         }
         let descriptor = NSSortDescriptor(key: "pageOrder", ascending: true)
         if let pages = myWebsite.pages{
@@ -98,8 +104,14 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // MARK:- UITableView delegate methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Push to modify page
+        let modifyPageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyPage") as! WEModifyPageViewController
+        modifyPageVC.websitePage = myWebsitePages[indexPath.row]
+        navigationController?.pushViewController(modifyPageVC, animated: true)
+    }
     
-    // MARK:- Segue methods
+    // MARK:- Segue/Navigation methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier, identifier == "ToCreateNewPage"{
             let newPageVC = segue.destination as! WEAddNewPageViewController

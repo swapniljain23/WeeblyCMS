@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Element" representedClassName=".Element" syncable="YES">
+        <attribute name="elementDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="elementName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="elementOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="elements" inverseEntity="Page" syncable="YES"/>
+    </entity>
     <entity name="Page" representedClassName=".Page" syncable="YES">
         <attribute name="pageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pageOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="elements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Element" inverseName="page" inverseEntity="Element" syncable="YES"/>
         <relationship name="site" maxCount="1" deletionRule="Nullify" destinationEntity="Website" inverseName="pages" inverseEntity="Website" syncable="YES"/>
     </entity>
     <entity name="Website" representedClassName=".Website" syncable="YES">
@@ -10,7 +17,8 @@
         <relationship name="pages" toMany="YES" deletionRule="Nullify" destinationEntity="Page" inverseName="site" inverseEntity="Page" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Page" positionX="-1134" positionY="9" width="128" height="90"/>
-        <element name="Website" positionX="-1377" positionY="17" width="128" height="73"/>
+        <element name="Page" positionX="-1116" positionY="-0" width="128" height="103"/>
+        <element name="Website" positionX="-1377" positionY="17" width="128" height="75"/>
+        <element name="Element" positionX="-1109" positionY="198" width="128" height="103"/>
     </elements>
 </model>
