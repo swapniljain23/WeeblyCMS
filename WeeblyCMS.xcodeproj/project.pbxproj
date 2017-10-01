@@ -20,6 +20,7 @@
 		28644A481F807F05008A2686 /* Page+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28644A441F807F05008A2686 /* Page+CoreDataProperties.swift */; };
 		28644A491F807F05008A2686 /* Website+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28644A451F807F05008A2686 /* Website+CoreDataClass.swift */; };
 		28644A4A1F807F05008A2686 /* Website+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28644A461F807F05008A2686 /* Website+CoreDataProperties.swift */; };
+		287B35691F80A8080022A989 /* WEAddNewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B35681F80A8080022A989 /* WEAddNewPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		28644A441F807F05008A2686 /* Page+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Page+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28644A451F807F05008A2686 /* Website+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Website+CoreDataClass.swift"; sourceTree = "<group>"; };
 		28644A461F807F05008A2686 /* Website+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Website+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		287B35681F80A8080022A989 /* WEAddNewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEAddNewPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			children = (
 				2835E4D41F7FD62200426F2A /* WERootViewController.swift */,
 				2835E4E41F7FE8F100426F2A /* WECreateWebsiteViewController.swift */,
+				287B35681F80A8080022A989 /* WEAddNewPageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				28644A481F807F05008A2686 /* Page+CoreDataProperties.swift in Sources */,
 				2835E4E31F7FD65E00426F2A /* WERootViewController.swift in Sources */,
 				2835E4E51F7FE8F100426F2A /* WECreateWebsiteViewController.swift in Sources */,
+				287B35691F80A8080022A989 /* WEAddNewPageViewController.swift in Sources */,
 				2835E4E21F7FD65900426F2A /* AppDelegate.swift in Sources */,
 				28644A4A1F807F05008A2686 /* Website+CoreDataProperties.swift in Sources */,
 				28644A491F807F05008A2686 /* Website+CoreDataClass.swift in Sources */,

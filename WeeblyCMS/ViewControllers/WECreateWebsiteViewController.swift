@@ -14,11 +14,11 @@ class WECreateWebsiteViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     var isCancellable = false
+    weak var delegate: RefreshWebsite?
     
     // MARK:- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,13 +31,8 @@ class WECreateWebsiteViewController: UIViewController, UITextFieldDelegate {
         if let isEmpty = textField.text?.isEmpty, !isEmpty{
             // Create a new website here.
             
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
-                return
-            }
-            
-            // Save resevation in core data
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let managedContext = appDelegate.persistentContainer.viewContext
-            
             let website = NSEntityDescription.insertNewObject(forEntityName: "Website", into: managedContext) as! Website
             website.websiteName = textField.text!
             
@@ -51,6 +46,9 @@ class WECreateWebsiteViewController: UIViewController, UITextFieldDelegate {
             // Save
             do{
                 try managedContext.save()
+                if let delegate = delegate{
+                    delegate.loadMyWebsite()
+                }
                 dismiss(animated: true, completion: nil)
             }catch let error{
                 // Handle error here
