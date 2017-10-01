@@ -15,6 +15,11 @@
 		2835E4E11F7FD64E00426F2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2835E4D81F7FD62200426F2A /* Assets.xcassets */; };
 		2835E4E21F7FD65900426F2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2835E4CE1F7FD62200426F2A /* AppDelegate.swift */; };
 		2835E4E31F7FD65E00426F2A /* WERootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2835E4D41F7FD62200426F2A /* WERootViewController.swift */; };
+		2835E4E51F7FE8F100426F2A /* WECreateWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2835E4E41F7FE8F100426F2A /* WECreateWebsiteViewController.swift */; };
+		28644A471F807F05008A2686 /* Page+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28644A431F807F05008A2686 /* Page+CoreDataClass.swift */; };
+		28644A481F807F05008A2686 /* Page+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28644A441F807F05008A2686 /* Page+CoreDataProperties.swift */; };
+		28644A491F807F05008A2686 /* Website+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28644A451F807F05008A2686 /* Website+CoreDataClass.swift */; };
+		28644A4A1F807F05008A2686 /* Website+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28644A461F807F05008A2686 /* Website+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		2835E4DA1F7FD62200426F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2835E4DC1F7FD62200426F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2835E4DD1F7FD62200426F2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2835E4E41F7FE8F100426F2A /* WECreateWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WECreateWebsiteViewController.swift; sourceTree = "<group>"; };
+		28644A431F807F05008A2686 /* Page+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Page+CoreDataClass.swift"; sourceTree = "<group>"; };
+		28644A441F807F05008A2686 /* Page+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Page+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		28644A451F807F05008A2686 /* Website+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Website+CoreDataClass.swift"; sourceTree = "<group>"; };
+		28644A461F807F05008A2686 /* Website+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Website+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +157,10 @@
 		2835E4D21F7FD62200426F2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				28644A431F807F05008A2686 /* Page+CoreDataClass.swift */,
+				28644A441F807F05008A2686 /* Page+CoreDataProperties.swift */,
+				28644A451F807F05008A2686 /* Website+CoreDataClass.swift */,
+				28644A461F807F05008A2686 /* Website+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				2835E4D41F7FD62200426F2A /* WERootViewController.swift */,
+				2835E4E41F7FE8F100426F2A /* WECreateWebsiteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -319,8 +334,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28644A471F807F05008A2686 /* Page+CoreDataClass.swift in Sources */,
+				28644A481F807F05008A2686 /* Page+CoreDataProperties.swift in Sources */,
 				2835E4E31F7FD65E00426F2A /* WERootViewController.swift in Sources */,
+				2835E4E51F7FE8F100426F2A /* WECreateWebsiteViewController.swift in Sources */,
 				2835E4E21F7FD65900426F2A /* AppDelegate.swift in Sources */,
+				28644A4A1F807F05008A2686 /* Website+CoreDataProperties.swift in Sources */,
+				28644A491F807F05008A2686 /* Website+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

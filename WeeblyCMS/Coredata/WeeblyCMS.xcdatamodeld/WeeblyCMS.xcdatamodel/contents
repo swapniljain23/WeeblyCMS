@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Page" representedClassName=".Page" syncable="YES">
+        <attribute name="pageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pageOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="site" maxCount="1" deletionRule="Nullify" destinationEntity="Website" inverseName="pages" inverseEntity="Website" syncable="YES"/>
+    </entity>
+    <entity name="Website" representedClassName=".Website" syncable="YES">
+        <attribute name="websiteName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pages" toMany="YES" deletionRule="Nullify" destinationEntity="Page" inverseName="site" inverseEntity="Page" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Page" positionX="-1134" positionY="9" width="128" height="90"/>
+        <element name="Website" positionX="-1377" positionY="17" width="128" height="73"/>
+    </elements>
 </model>

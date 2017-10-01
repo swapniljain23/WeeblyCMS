@@ -19,9 +19,88 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="spO-pU-Ubs" kind="presentation" identifier="CreateWebsite" id="hlT-X0-2WJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Create Website View Controller-->
+        <scene sceneID="Yxe-jc-QV7">
+            <objects>
+                <viewController id="spO-pU-Ubs" customClass="WECreateWebsiteViewController" customModule="WeeblyCMS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pWn-VO-sSN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your site name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKz-5j-4rY">
+                                <rect key="frame" x="20" y="84" width="335" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="JHF-En-HU8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Site Name" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="5h5-Xb-NaQ">
+                                <rect key="frame" x="20" y="164" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Bj1-JL-n4I"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="spO-pU-Ubs" id="7hz-TB-Hj6"/>
+                                </connections>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejm-Pe-GdH">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7P7-s7-89s"/>
+                                </constraints>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Create Website" id="ydI-CA-IEE">
+                                        <barButtonItem key="leftBarButtonItem" enabled="NO" systemItem="cancel" id="hGR-uU-Gxt">
+                                            <connections>
+                                                <action selector="cancel:" destination="spO-pU-Ubs" id="Qi5-Ez-mV9"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="YNJ-eh-Opl">
+                                            <connections>
+                                                <action selector="saveWebsiteName:" destination="spO-pU-Ubs" id="n2k-qI-ig0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GKz-5j-4rY" firstAttribute="leading" secondItem="rzZ-Yq-NsI" secondAttribute="leading" constant="20" id="3dN-Ao-EHS"/>
+                            <constraint firstItem="ejm-Pe-GdH" firstAttribute="top" secondItem="pWn-VO-sSN" secondAttribute="top" constant="20" id="7OD-f8-A8M"/>
+                            <constraint firstItem="5h5-Xb-NaQ" firstAttribute="top" secondItem="GKz-5j-4rY" secondAttribute="bottom" id="JHF-UQ-AZy"/>
+                            <constraint firstItem="5h5-Xb-NaQ" firstAttribute="leading" secondItem="rzZ-Yq-NsI" secondAttribute="leading" constant="20" id="Pyh-Hs-Ctn"/>
+                            <constraint firstItem="rzZ-Yq-NsI" firstAttribute="trailing" secondItem="GKz-5j-4rY" secondAttribute="trailing" constant="20" id="RWj-PO-ubo"/>
+                            <constraint firstItem="ejm-Pe-GdH" firstAttribute="leading" secondItem="rzZ-Yq-NsI" secondAttribute="leading" id="cAJ-Vs-r0v"/>
+                            <constraint firstItem="GKz-5j-4rY" firstAttribute="top" secondItem="ejm-Pe-GdH" secondAttribute="bottom" constant="20" id="slt-xi-qz1"/>
+                            <constraint firstItem="rzZ-Yq-NsI" firstAttribute="trailing" secondItem="5h5-Xb-NaQ" secondAttribute="trailing" constant="20" id="uUm-n4-hMv"/>
+                            <constraint firstItem="ejm-Pe-GdH" firstAttribute="trailing" secondItem="rzZ-Yq-NsI" secondAttribute="trailing" id="uek-WF-cVD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rzZ-Yq-NsI"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="hGR-uU-Gxt" id="nx3-Sc-1KK"/>
+                        <outlet property="saveButton" destination="YNJ-eh-Opl" id="m4P-pg-3ci"/>
+                        <outlet property="textField" destination="5h5-Xb-NaQ" id="zvi-Nm-tbX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMN-yY-8a9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1433" y="33"/>
         </scene>
     </scenes>
 </document>
