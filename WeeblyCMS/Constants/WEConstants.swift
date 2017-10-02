@@ -16,12 +16,12 @@ protocol WERefreshPage: AnyObject {
     func refreshMyPage()
 }
 
-enum eElementType{
-    case text
-    case image
-    case video
-    case spacer
-    case map
+enum eElementType: String{
+    case text = "text"
+    case image = "image"
+    case video = "video"
+    case spacer = "spacer"
+    case map = "map"
 }
 enum eOperationType{
     case create

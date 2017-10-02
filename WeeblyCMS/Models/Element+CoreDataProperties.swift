@@ -21,6 +21,7 @@ extension Element {
     @NSManaged public var elementName: String?
     @NSManaged public var elementOrder: Int16
     @NSManaged public var elementImage: NSData?
+    @NSManaged public var elementType: String?
     @NSManaged public var page: Page?
 
 }

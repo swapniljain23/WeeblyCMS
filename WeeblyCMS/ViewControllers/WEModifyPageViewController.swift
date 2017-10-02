@@ -15,6 +15,7 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet weak var collectionView: UICollectionView!
     var websitePage: Page?
     var pageElements = [Element]()
+    var elementToEdit: Element?
     
     // MARK:- View life cycle
     override func viewDidLoad() {
@@ -72,12 +73,16 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ElementCell", for: indexPath) as! ElementCollectionViewCell
         let element = pageElements[indexPath.row]
+
+        guard let elementType = element.elementType else{
+            return cell
+        }
         
         // Show text/image
-        if let elementName = element.elementName{
-            cell.elementName.text = elementName
+        if elementType == eElementType.text.rawValue{
+            cell.elementName.text = element.elementName
             cell.elementImageView.image = nil
-        }else if let image = element.elementImage, let imageData = image as? Data {
+        }else if elementType == eElementType.image.rawValue, let image = element.elementImage, let imageData = image as? Data {
             cell.elementImageView.image = UIImage(data: imageData)
             cell.elementName.text = nil
         }else{
@@ -90,21 +95,32 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
     
     // MARK:- UICollectionView delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Selection
+        let selectedItem = self.pageElements[indexPath.row]
+        
         // Show option to edit/delete
         let alertController = UIAlertController(title: "Operations", message: "", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Edit", style: .default, handler: { (action) in
-            let addNewElementVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddNewElementVC") as? WEAddNewElementViewController
-            if let addNewElementVC = addNewElementVC{
-                addNewElementVC.websitePage = self.websitePage
-                addNewElementVC.delegate = self
-                addNewElementVC.operationType = .edit
-                addNewElementVC.element = self.pageElements[indexPath.row]
-                self.present(addNewElementVC, animated: true, completion: nil)
+            if let elementType = selectedItem.elementType, elementType == eElementType.image.rawValue{
+                let imagePicker = UIImagePickerController()
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.delegate = self
+                self.elementToEdit = selectedItem
+                self.present(imagePicker, animated: true, completion: nil)
+            }else if let elementType = selectedItem.elementType, elementType == eElementType.text.rawValue{
+                let addNewElementVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddNewElementVC") as? WEAddNewElementViewController
+                if let addNewElementVC = addNewElementVC{
+                    addNewElementVC.websitePage = self.websitePage
+                    addNewElementVC.delegate = self
+                    addNewElementVC.operationType = .edit
+                    addNewElementVC.element = selectedItem
+                    self.present(addNewElementVC, animated: true, completion: nil)
+                }
             }
         }))
         alertController.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (action) in
             // Delete item
-            let element = self.pageElements[indexPath.row]
+            let element = selectedItem
             self.deleteElement(element: element)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -116,11 +132,18 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         // Debug logs
         print(info)
         
+        guard info.count > 0, let selectedImage = info["UIImagePickerControllerOriginalImage"] as? UIImage else{
+            return
+        }
         // Save selected image here.
-        if info.count > 0, let selectedImage = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+        if let element = elementToEdit{
+            // Edit
+            editElementWithImage(element: element, elementImage: selectedImage)
+            elementToEdit = nil
+        }else{
+            // Save
             saveElementWithImage(elementImage: selectedImage)
         }
-        
         // Dismiss picker
         picker.dismiss(animated: true, completion: {
             self.refreshMyPage()
@@ -161,8 +184,26 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         let managedContext = appDelegate.persistentContainer.viewContext
         let element = NSEntityDescription.insertNewObject(forEntityName: "Element", into: managedContext) as! Element
         element.elementOrder = Int16(websitePage?.elements?.count ?? 0)
+        element.elementType = eElementType.image.rawValue
         element.elementImage = NSData(data: imageData)
         websitePage?.addToElements(element)
+        
+        // Save
+        do{
+            try managedContext.save()
+        }catch let error{
+            // Handle error here
+            print(error.localizedDescription)
+        }
+    }
+    
+    func editElementWithImage(element: Element, elementImage: UIImage){
+        guard let imageData = UIImagePNGRepresentation(elementImage) else{
+            return
+        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        element.elementImage = NSData(data: imageData)
         
         // Save
         do{

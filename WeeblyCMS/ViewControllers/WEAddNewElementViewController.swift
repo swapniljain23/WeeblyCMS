@@ -49,6 +49,7 @@ class WEAddNewElementViewController: UIViewController {
         case .create:
             let element = NSEntityDescription.insertNewObject(forEntityName: "Element", into: managedContext) as! Element
             element.elementOrder = Int16(websitePage?.elements?.count ?? 0)
+            element.elementType = eElementType.text.rawValue
             element.elementName = elementName
             element.elementDescription = elementDesc
             websitePage?.addToElements(element)
