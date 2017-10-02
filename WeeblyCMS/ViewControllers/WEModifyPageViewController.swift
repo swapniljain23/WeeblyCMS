@@ -30,6 +30,10 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
             title = websitePage.pageName
         }
         
+        // Add gesture recognizer
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(gesture:)))
+        collectionView.addGestureRecognizer(longPressGesture)
+        
         // Reload colletion view
         refreshMyPage()
     }
@@ -59,6 +63,23 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func handleLongPressGesture(gesture: UILongPressGestureRecognizer){
+        print("handleLongPressGesture")
+        switch(gesture.state) {
+        case UIGestureRecognizerState.began:
+            guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else {
+                break
+            }
+            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case UIGestureRecognizerState.changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case UIGestureRecognizerState.ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
     }
     
     // MARK:- UICollectionView data source
@@ -125,6 +146,14 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("collectionView:moveItemAt")
+        let itemToMove = pageElements[sourceIndexPath.row]
+        pageElements.remove(at: sourceIndexPath.row)
+        pageElements.insert(itemToMove, at: destinationIndexPath.row)
+        updatePageElementOrder()
     }
     
     // MARK:- UIImagePicker Delegate
@@ -212,5 +241,14 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
             // Handle error here
             print(error.localizedDescription)
         }
+    }
+    
+    func updatePageElementOrder(){
+        for (index, element) in pageElements.enumerated(){
+            element.elementOrder = Int16(index)
+        }
+        // Save context
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.saveContext()
     }
 }
