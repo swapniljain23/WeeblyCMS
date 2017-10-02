@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, WERefreshPage {
+class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, WERefreshPage, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK:- Properties
     @IBOutlet weak var collectionView: UICollectionView!
@@ -51,10 +51,10 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
             }
         }))
         alertController.addAction(UIAlertAction(title: "Add Image", style: .default, handler: { (action) in
-            let photoPickerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoPickerVC") as? WEPhotoPickerViewController
-            if let photoPickerVC = photoPickerVC{
-                self.present(photoPickerVC, animated: true, completion: nil)
-            }
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true, completion: nil)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
@@ -72,7 +72,19 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ElementCell", for: indexPath) as! ElementCollectionViewCell
         let element = pageElements[indexPath.row]
-        cell.elementName.text = element.elementName
+        
+        // Show text/image
+        if let elementName = element.elementName{
+            cell.elementName.text = elementName
+            cell.elementImageView.image = nil
+        }else if let image = element.elementImage, let imageData = image as? Data {
+            cell.elementImageView.image = UIImage(data: imageData)
+            cell.elementName.text = nil
+        }else{
+            // error?
+            cell.elementName.text = nil
+            cell.elementImageView.image = nil
+        }
         return cell
     }
     
@@ -99,6 +111,22 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         present(alertController, animated: true, completion: nil)
     }
     
+    // MARK:- UIImagePicker Delegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // Debug logs
+        print(info)
+        
+        // Save selected image here.
+        if info.count > 0, let selectedImage = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+            saveElementWithImage(elementImage: selectedImage)
+        }
+        
+        // Dismiss picker
+        picker.dismiss(animated: true, completion: {
+            self.refreshMyPage()
+        })
+    }
+    
     // MARK:- Helpers
     func refreshMyPage(){
         // Get all elements
@@ -119,6 +147,26 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         do{
             try managedContext.save()
             refreshMyPage()
+        }catch let error{
+            // Handle error here
+            print(error.localizedDescription)
+        }
+    }
+    
+    func saveElementWithImage(elementImage: UIImage){
+        guard let imageData = UIImagePNGRepresentation(elementImage) else{
+            return
+        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let element = NSEntityDescription.insertNewObject(forEntityName: "Element", into: managedContext) as! Element
+        element.elementOrder = Int16(websitePage?.elements?.count ?? 0)
+        element.elementImage = NSData(data: imageData)
+        websitePage?.addToElements(element)
+        
+        // Save
+        do{
+            try managedContext.save()
         }catch let error{
             // Handle error here
             print(error.localizedDescription)

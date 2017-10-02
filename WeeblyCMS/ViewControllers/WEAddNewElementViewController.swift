@@ -45,7 +45,6 @@ class WEAddNewElementViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        
         switch operationType {
         case .create:
             let element = NSEntityDescription.insertNewObject(forEntityName: "Element", into: managedContext) as! Element

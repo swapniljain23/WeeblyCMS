@@ -2,7 +2,7 @@
 //  Page+CoreDataProperties.swift
 //  WeeblyCMS
 //
-//  Created by Swapnil Jain on 10/1/17.
+//  Created by Swapnil Jain on 10/2/17.
 //  Copyright © 2017 Weebly. All rights reserved.
 //
 //
@@ -17,10 +17,10 @@ extension Page {
         return NSFetchRequest<Page>(entityName: "Page")
     }
 
-    @NSManaged public var pageName: String
+    @NSManaged public var pageName: String?
     @NSManaged public var pageOrder: Int16
-    @NSManaged public var site: Website?
     @NSManaged public var elements: NSSet?
+    @NSManaged public var site: Website?
 
 }
 
