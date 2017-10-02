@@ -14,7 +14,7 @@ class WEAddNewPageViewController: UIViewController, UITextFieldDelegate {
     // MARK:- Properties
     @IBOutlet weak var pageTitle: UITextField!
     var myWebsite: Website?
-    weak var refreshWebsiteDelegate: RefreshWebsite?
+    weak var refreshWebsiteDelegate: WERefreshWebsite?
     
     // MARK:- View life cycle
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class WEAddNewPageViewController: UIViewController, UITextFieldDelegate {
             do{
                 try managedContext.save()
                 if let delegate = refreshWebsiteDelegate{
-                    delegate.loadMyWebsite()
+                    delegate.refreshMyWebsite()
                 }
                 dismiss(animated: true, completion: nil)
             }catch let error{

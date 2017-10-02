@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28169C231F81F6A800F8774B /* WEConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28169C221F81F6A800F8774B /* WEConstants.swift */; };
+		28169C251F81F70500F8774B /* WEAddNewElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28169C241F81F70500F8774B /* WEAddNewElementViewController.swift */; };
 		2835E4B51F7FD5AA00426F2A /* WeeblyCMSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2835E4B41F7FD5AA00426F2A /* WeeblyCMSTests.swift */; };
 		2835E4C01F7FD5AA00426F2A /* WeeblyCMSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2835E4BF1F7FD5AA00426F2A /* WeeblyCMSUITests.swift */; };
 		2835E4DE1F7FD63800426F2A /* WeeblyCMS.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 2835E4D01F7FD62200426F2A /* WeeblyCMS.xcdatamodeld */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28169C221F81F6A800F8774B /* WEConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEConstants.swift; sourceTree = "<group>"; };
+		28169C241F81F70500F8774B /* WEAddNewElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEAddNewElementViewController.swift; sourceTree = "<group>"; };
 		2835E4991F7FD5AA00426F2A /* WeeblyCMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeeblyCMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2835E4B01F7FD5AA00426F2A /* WeeblyCMSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeeblyCMSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2835E4B41F7FD5AA00426F2A /* WeeblyCMSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeblyCMSTests.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				2835E4E41F7FE8F100426F2A /* WECreateWebsiteViewController.swift */,
 				287B35681F80A8080022A989 /* WEAddNewPageViewController.swift */,
 				287B356A1F8122050022A989 /* WEModifyPageViewController.swift */,
+				28169C241F81F70500F8774B /* WEAddNewElementViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 		2835E4D51F7FD62200426F2A /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				28169C221F81F6A800F8774B /* WEConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28169C251F81F70500F8774B /* WEAddNewElementViewController.swift in Sources */,
 				28644A471F807F05008A2686 /* Page+CoreDataClass.swift in Sources */,
 				28644A481F807F05008A2686 /* Page+CoreDataProperties.swift in Sources */,
 				287B356B1F8122050022A989 /* WEModifyPageViewController.swift in Sources */,
@@ -367,6 +374,7 @@
 				2835E4E51F7FE8F100426F2A /* WECreateWebsiteViewController.swift in Sources */,
 				287B35691F80A8080022A989 /* WEAddNewPageViewController.swift in Sources */,
 				2835E4E21F7FD65900426F2A /* AppDelegate.swift in Sources */,
+				28169C231F81F6A800F8774B /* WEConstants.swift in Sources */,
 				28644A4A1F807F05008A2686 /* Website+CoreDataProperties.swift in Sources */,
 				28644A491F807F05008A2686 /* Website+CoreDataClass.swift in Sources */,
 			);

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, WERefreshPage {
 
     // MARK:- Properties
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,7 +30,7 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         }
         
         // Reload colletion view
-        reloadCollectionView()
+        refreshMyPage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,24 +40,21 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
     
     // MARK:- IBAction
     @objc func addElement(_ sender: UIBarButtonItem){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let element = NSEntityDescription.insertNewObject(forEntityName: "Element", into: managedContext) as! Element
-        element.elementOrder = 0
-        element.elementName = "Default name"
-        element.elementDescription = "Default description"
         
-        // Relate website and page
-        websitePage?.addToElements(element)
-        
-        // Save
-        do{
-            try managedContext.save()
-            reloadCollectionView()
-        }catch let error{
-            // Handle error here
-            print(error.localizedDescription)
-        }
+        let alertController = UIAlertController(title: "Add new element", message: "", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Add Text", style: .default, handler: { (action) in
+            let addNewElementVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddNewElementVC") as? WEAddNewElementViewController
+            if let addNewElementVC = addNewElementVC{
+                addNewElementVC.websitePage = self.websitePage
+                addNewElementVC.delegate = self
+                self.present(addNewElementVC, animated: true, completion: nil)
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "Add Image", style: .default, handler: { (action) in
+            // TODO:
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     // MARK:- UICollectionView data source
@@ -79,7 +76,7 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
     // MARK:- UICollectionView delegate
     
     // MARK:- Helpers
-    func reloadCollectionView(){
+    func refreshMyPage(){
         // Get all elements
         let descriptor = NSSortDescriptor(key: "elementOrder", ascending: true)
         if let elements = websitePage?.elements{

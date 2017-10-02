@@ -14,7 +14,7 @@ class WECreateWebsiteViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     var isCancellable = false
-    weak var delegate: RefreshWebsite?
+    weak var delegate: WERefreshWebsite?
     
     // MARK:- View life cycle
     override func viewDidLoad() {
@@ -47,13 +47,12 @@ class WECreateWebsiteViewController: UIViewController, UITextFieldDelegate {
             do{
                 try managedContext.save()
                 if let delegate = delegate{
-                    delegate.loadMyWebsite()
+                    delegate.refreshMyWebsite()
                 }
                 dismiss(animated: true, completion: nil)
             }catch let error{
                 // Handle error here
                 print(error.localizedDescription)
-                
             }
         }
     }

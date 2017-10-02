@@ -9,11 +9,7 @@
 import UIKit
 import CoreData
 
-protocol RefreshWebsite: AnyObject {
-    func loadMyWebsite()
-}
-
-class WERootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RefreshWebsite {
+class WERootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WERefreshWebsite {
 
     // MARK:- Properties
     var myWebsite: Website?
@@ -25,7 +21,7 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK:- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadMyWebsite()
+        refreshMyWebsite()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +30,7 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     // MARK:- Load website
-    func loadMyWebsite(){
+    func refreshMyWebsite(){
         
         // Set a website if already exist
         if myWebsite == nil, let websites = fetchSavedWebsites(), websites.count > 0{
