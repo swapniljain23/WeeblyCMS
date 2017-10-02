@@ -51,7 +51,10 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
             }
         }))
         alertController.addAction(UIAlertAction(title: "Add Image", style: .default, handler: { (action) in
-            // TODO:
+            let photoPickerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoPickerVC") as? WEPhotoPickerViewController
+            if let photoPickerVC = photoPickerVC{
+                self.present(photoPickerVC, animated: true, completion: nil)
+            }
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
@@ -74,6 +77,27 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     // MARK:- UICollectionView delegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Show option to edit/delete
+        let alertController = UIAlertController(title: "Operations", message: "", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Edit", style: .default, handler: { (action) in
+            let addNewElementVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddNewElementVC") as? WEAddNewElementViewController
+            if let addNewElementVC = addNewElementVC{
+                addNewElementVC.websitePage = self.websitePage
+                addNewElementVC.delegate = self
+                addNewElementVC.operationType = .edit
+                addNewElementVC.element = self.pageElements[indexPath.row]
+                self.present(addNewElementVC, animated: true, completion: nil)
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (action) in
+            // Delete item
+            let element = self.pageElements[indexPath.row]
+            self.deleteElement(element: element)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
     
     // MARK:- Helpers
     func refreshMyPage(){
@@ -84,14 +108,20 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         }
         collectionView.reloadData()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK:- Coredata Operations
+    func deleteElement(element: Element){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        // Remove element
+        websitePage?.removeFromElements(element)
+        // Save context
+        do{
+            try managedContext.save()
+            refreshMyPage()
+        }catch let error{
+            // Handle error here
+            print(error.localizedDescription)
+        }
     }
-    */
-
 }

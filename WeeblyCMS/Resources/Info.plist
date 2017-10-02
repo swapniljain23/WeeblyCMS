@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Weebly needs access to you photo library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Weebly needs access to you camera</string>
 </dict>
 </plist>

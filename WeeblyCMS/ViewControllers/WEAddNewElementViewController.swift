@@ -16,12 +16,18 @@ class WEAddNewElementViewController: UIViewController {
     @IBOutlet weak var elementDescTxtView: UITextView!
     var websitePage: Page?
     weak var delegate: WERefreshPage?
+    var element: Element?
+    var operationType: eOperationType = .create
     
     // MARK:- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // If its edit, then show the information
+        if operationType == .edit, let element = element{
+            elementNameTxtField.text = element.elementName
+            elementDescTxtView.text = element.elementDescription
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,14 +44,22 @@ class WEAddNewElementViewController: UIViewController {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
-        let element = NSEntityDescription.insertNewObject(forEntityName: "Element", into: managedContext) as! Element
-        element.elementOrder = Int16(websitePage?.elements?.count ?? 0)
-        element.elementName = elementName
-        element.elementDescription = elementDesc
-
-        // Add element to a page
-        websitePage?.addToElements(element)
-
+        
+        
+        switch operationType {
+        case .create:
+            let element = NSEntityDescription.insertNewObject(forEntityName: "Element", into: managedContext) as! Element
+            element.elementOrder = Int16(websitePage?.elements?.count ?? 0)
+            element.elementName = elementName
+            element.elementDescription = elementDesc
+            websitePage?.addToElements(element)
+        case .edit:
+            element?.elementName = elementName
+            element?.elementDescription = elementDesc
+        case .delete:
+            break
+        }
+        
         // Save
         do{
             try managedContext.save()

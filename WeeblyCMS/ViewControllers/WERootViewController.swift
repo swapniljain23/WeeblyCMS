@@ -101,6 +101,9 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
     
     // MARK:- UITableView delegate methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Deselect row
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         // Push to modify page
         let modifyPageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyPage") as! WEModifyPageViewController
         modifyPageVC.websitePage = myWebsitePages[indexPath.row]

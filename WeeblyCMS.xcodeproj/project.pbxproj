@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		28169C231F81F6A800F8774B /* WEConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28169C221F81F6A800F8774B /* WEConstants.swift */; };
 		28169C251F81F70500F8774B /* WEAddNewElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28169C241F81F70500F8774B /* WEAddNewElementViewController.swift */; };
+		28169C271F820AC400F8774B /* WEPhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28169C261F820AC400F8774B /* WEPhotoPickerViewController.swift */; };
 		2835E4B51F7FD5AA00426F2A /* WeeblyCMSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2835E4B41F7FD5AA00426F2A /* WeeblyCMSTests.swift */; };
 		2835E4C01F7FD5AA00426F2A /* WeeblyCMSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2835E4BF1F7FD5AA00426F2A /* WeeblyCMSUITests.swift */; };
 		2835E4DE1F7FD63800426F2A /* WeeblyCMS.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 2835E4D01F7FD62200426F2A /* WeeblyCMS.xcdatamodeld */; };
@@ -27,6 +28,7 @@
 		287B356E1F8125AD0022A989 /* ElementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B356D1F8125AD0022A989 /* ElementCollectionViewCell.swift */; };
 		287B35791F812C110022A989 /* Element+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B35771F812C110022A989 /* Element+CoreDataClass.swift */; };
 		287B357A1F812C110022A989 /* Element+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B35781F812C110022A989 /* Element+CoreDataProperties.swift */; };
+		28E4AC1B1F82880200BA8AD2 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E4AC1A1F82880200BA8AD2 /* ImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 /* Begin PBXFileReference section */
 		28169C221F81F6A800F8774B /* WEConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEConstants.swift; sourceTree = "<group>"; };
 		28169C241F81F70500F8774B /* WEAddNewElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEAddNewElementViewController.swift; sourceTree = "<group>"; };
+		28169C261F820AC400F8774B /* WEPhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEPhotoPickerViewController.swift; sourceTree = "<group>"; };
 		2835E4991F7FD5AA00426F2A /* WeeblyCMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeeblyCMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2835E4B01F7FD5AA00426F2A /* WeeblyCMSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeeblyCMSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2835E4B41F7FD5AA00426F2A /* WeeblyCMSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeblyCMSTests.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		287B356D1F8125AD0022A989 /* ElementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementCollectionViewCell.swift; sourceTree = "<group>"; };
 		287B35771F812C110022A989 /* Element+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Element+CoreDataClass.swift"; sourceTree = "<group>"; };
 		287B35781F812C110022A989 /* Element+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Element+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		28E4AC1A1F82880200BA8AD2 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,7 @@
 				287B35681F80A8080022A989 /* WEAddNewPageViewController.swift */,
 				287B356A1F8122050022A989 /* WEModifyPageViewController.swift */,
 				28169C241F81F70500F8774B /* WEAddNewElementViewController.swift */,
+				28169C261F820AC400F8774B /* WEPhotoPickerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				287B356D1F8125AD0022A989 /* ElementCollectionViewCell.swift */,
+				28E4AC1A1F82880200BA8AD2 /* ImageCollectionViewCell.swift */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -363,7 +369,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28169C271F820AC400F8774B /* WEPhotoPickerViewController.swift in Sources */,
 				28169C251F81F70500F8774B /* WEAddNewElementViewController.swift in Sources */,
+				28E4AC1B1F82880200BA8AD2 /* ImageCollectionViewCell.swift in Sources */,
 				28644A471F807F05008A2686 /* Page+CoreDataClass.swift in Sources */,
 				28644A481F807F05008A2686 /* Page+CoreDataProperties.swift in Sources */,
 				287B356B1F8122050022A989 /* WEModifyPageViewController.swift in Sources */,
