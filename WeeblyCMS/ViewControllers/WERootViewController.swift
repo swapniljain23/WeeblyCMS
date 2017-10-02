@@ -9,14 +9,15 @@
 import UIKit
 import CoreData
 
-class WERootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WERefreshWebsite {
+class WERootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WERefreshWebsite, UITextFieldDelegate {
 
     // MARK:- Properties
     var myWebsite: Website?
     var myWebsitePages = [Page]()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var websiteTitle: UILabel!
+    //@IBOutlet weak var websiteTitle: UILabel!
+    @IBOutlet weak var websiteTextField: UITextField!
     
     // MARK:- View life cycle
     override func viewDidLoad() {
@@ -45,15 +46,16 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Preceed with loading website
         myWebsitePages.removeAll()
-        print("My Website: \(myWebsite.websiteName)")
-        websiteTitle.text = myWebsite.websiteName
+        print("My Website: \(String(describing: myWebsite.websiteName))")
+        //websiteTitle.text = myWebsite.websiteName
+        websiteTextField.text = myWebsite.websiteName
         for page in websitePages{
             let pageObj = page as! Page
-            print("\tPAGE# \(pageObj.pageOrder): \(pageObj.pageName)")
+            print("\tPAGE# \(pageObj.pageOrder): \(String(describing: pageObj.pageName))")
             if let elements = pageObj.elements{
                 for element in elements{
                     let elementObj = element as! Element
-                    print("\t\tElement# \(elementObj.elementOrder): \(elementObj.elementName) -> \(elementObj.elementDescription)")
+                    print("\t\tElement# \(elementObj.elementOrder): \(String(describing: elementObj.elementName)) -> \(String(describing: elementObj.elementDescription))")
                 }
             }
         }
@@ -110,6 +112,13 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
         navigationController?.pushViewController(modifyPageVC, animated: true)
     }
     
+    // MARK:- UITextField delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        updateWebsiteTitle(newTitle: textField.text)
+        return true
+    }
+    
     // MARK:- Segue/Navigation methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier, identifier == "ToCreateNewPage"{
@@ -124,6 +133,15 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
         let createNewWebsiteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateNewWebsiteVC") as! WECreateWebsiteViewController
         createNewWebsiteVC.delegate = self
         present(createNewWebsiteVC, animated: true, completion: nil)
+    }
+    
+    func updateWebsiteTitle(newTitle: String?){
+        // update title
+        myWebsite?.websiteName = newTitle
+        
+        // save context
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.saveContext()
     }
 }
 

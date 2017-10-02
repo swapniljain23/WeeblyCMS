@@ -60,24 +60,27 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="9bk-9O-wfu"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R74-q7-7KQ">
-                                <rect key="frame" x="16" y="124" width="343" height="42"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wFo-6i-PIt">
+                                <rect key="frame" x="20" y="124" width="335" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="FVU-dk-mLp"/>
+                                    <constraint firstAttribute="height" constant="42" id="ukX-j2-k5V"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Ibv-qO-aZD"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R74-q7-7KQ" secondAttribute="trailing" constant="16" id="N8r-pd-Y9R"/>
-                            <constraint firstItem="Dq6-oe-dfm" firstAttribute="top" secondItem="R74-q7-7KQ" secondAttribute="bottom" constant="60" id="NoN-lt-JyB"/>
-                            <constraint firstItem="R74-q7-7KQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="gtV-Fp-1FP"/>
+                            <constraint firstItem="wFo-6i-PIt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="JdI-m4-8Ca"/>
+                            <constraint firstItem="Dq6-oe-dfm" firstAttribute="top" secondItem="wFo-6i-PIt" secondAttribute="bottom" constant="60" id="Mix-JB-OA2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wFo-6i-PIt" secondAttribute="trailing" constant="20" id="at2-pb-5wX"/>
+                            <constraint firstItem="wFo-6i-PIt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="i2R-xB-sfl"/>
                             <constraint firstItem="Dq6-oe-dfm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="poj-Rv-dhW"/>
                             <constraint firstItem="Dq6-oe-dfm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="r2J-F6-56A"/>
-                            <constraint firstItem="R74-q7-7KQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sZy-CK-13B"/>
                             <constraint firstItem="Dq6-oe-dfm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="zwL-o3-rvv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -91,7 +94,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Dq6-oe-dfm" id="f7X-pR-hGC"/>
-                        <outlet property="websiteTitle" destination="R74-q7-7KQ" id="iFB-Tl-i8N"/>
+                        <outlet property="websiteTextField" destination="wFo-6i-PIt" id="yFz-M1-dua"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

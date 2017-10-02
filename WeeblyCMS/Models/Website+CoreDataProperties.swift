@@ -17,7 +17,7 @@ extension Website {
         return NSFetchRequest<Website>(entityName: "Website")
     }
 
-    @NSManaged public var websiteName: String
+    @NSManaged public var websiteName: String?
     @NSManaged public var pages: NSSet?
 
 }
