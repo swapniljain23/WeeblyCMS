@@ -9,10 +9,12 @@
 import UIKit
 import CoreData
 
-class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, WERefreshPage, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, WERefreshPage, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     // MARK:- Properties
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pageTitleTextField: UITextField!
+    
     var websitePage: Page?
     var pageElements = [Element]()
     var elementToEdit: Element?
@@ -26,9 +28,7 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         navigationItem.rightBarButtonItem = addElementButton
         
         // Set title
-        if let websitePage = websitePage{
-            title = websitePage.pageName
-        }
+        pageTitleTextField.text = websitePage?.pageName
         
         // Add gesture recognizer
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(gesture:)))
@@ -179,6 +179,13 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         })
     }
     
+    // MARK:- UITextField delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        updatePageTitle(newTitle: textField.text)
+        return true
+    }
+    
     // MARK:- Helpers
     func refreshMyPage(){
         // Get all elements
@@ -247,6 +254,13 @@ class WEModifyPageViewController: UIViewController, UICollectionViewDataSource, 
         for (index, element) in pageElements.enumerated(){
             element.elementOrder = Int16(index)
         }
+        // Save context
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.saveContext()
+    }
+    
+    func updatePageTitle(newTitle: String?){
+        websitePage?.pageName = newTitle
         // Save context
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.saveContext()

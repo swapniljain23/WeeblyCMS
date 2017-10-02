@@ -16,7 +16,6 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
     var myWebsitePages = [Page]()
     
     @IBOutlet weak var tableView: UITableView!
-    //@IBOutlet weak var websiteTitle: UILabel!
     @IBOutlet weak var websiteTextField: UITextField!
     
     // MARK:- View life cycle
@@ -30,6 +29,11 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     // MARK:- Load website
     func refreshMyWebsite(){
         

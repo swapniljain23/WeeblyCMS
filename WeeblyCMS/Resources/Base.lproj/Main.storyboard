@@ -110,7 +110,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xJ3-qS-W9D">
-                                <rect key="frame" x="20" y="80" width="335" height="567"/>
+                                <rect key="frame" x="20" y="100" width="335" height="547"/>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="dzR-k4-VhC">
                                     <size key="itemSize" width="170" height="170"/>
@@ -159,12 +159,27 @@
                                     <outlet property="delegate" destination="8a6-7s-68d" id="OPf-Ju-jyv"/>
                                 </connections>
                             </collectionView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kv4-Ii-DZE">
+                                <rect key="frame" x="20" y="40" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fEf-Eu-DDA"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="8a6-7s-68d" id="FKd-bZ-K8g"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="xJ3-qS-W9D" firstAttribute="leading" secondItem="qgZ-hS-Suu" secondAttribute="leading" constant="20" id="CHb-5g-wbp"/>
-                            <constraint firstItem="xJ3-qS-W9D" firstAttribute="top" secondItem="qgZ-hS-Suu" secondAttribute="top" constant="60" id="RGt-HR-KkC"/>
+                            <constraint firstItem="kv4-Ii-DZE" firstAttribute="top" secondItem="qgZ-hS-Suu" secondAttribute="top" constant="20" id="IUj-GV-ppV"/>
+                            <constraint firstItem="xJ3-qS-W9D" firstAttribute="top" secondItem="qgZ-hS-Suu" secondAttribute="top" constant="80" id="RGt-HR-KkC"/>
+                            <constraint firstItem="qgZ-hS-Suu" firstAttribute="trailing" secondItem="kv4-Ii-DZE" secondAttribute="trailing" constant="20" id="c5p-O1-Qqm"/>
                             <constraint firstAttribute="trailing" secondItem="xJ3-qS-W9D" secondAttribute="trailing" constant="20" id="lKh-y1-GxA"/>
+                            <constraint firstItem="kv4-Ii-DZE" firstAttribute="leading" secondItem="qgZ-hS-Suu" secondAttribute="leading" constant="20" id="m6q-fF-RQg"/>
                             <constraint firstItem="qgZ-hS-Suu" firstAttribute="bottom" secondItem="xJ3-qS-W9D" secondAttribute="bottom" constant="20" id="sGW-ex-cY6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qgZ-hS-Suu"/>
@@ -172,6 +187,7 @@
                     <navigationItem key="navigationItem" id="JK9-pN-tTR"/>
                     <connections>
                         <outlet property="collectionView" destination="xJ3-qS-W9D" id="i0M-HN-BfV"/>
+                        <outlet property="pageTitleTextField" destination="kv4-Ii-DZE" id="jOG-zC-Rju"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fY-95-OQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
