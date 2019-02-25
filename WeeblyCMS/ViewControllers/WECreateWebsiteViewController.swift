@@ -13,6 +13,7 @@ class WECreateWebsiteViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+  
     var isCancellable = false
     weak var delegate: WERefreshWebsite?
     
@@ -27,10 +28,9 @@ class WECreateWebsiteViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK:- IBAction
-    @IBAction func saveWebsiteName(_ sender: UIBarButtonItem){
-        if let isEmpty = textField.text?.isEmpty, !isEmpty{
+    @IBAction func saveWebsiteName(_ sender: UIBarButtonItem) {
+        if let isEmpty = textField.text?.isEmpty, !isEmpty {
             // Create a new website here.
-            
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let managedContext = appDelegate.persistentContainer.viewContext
             let website = NSEntityDescription.insertNewObject(forEntityName: "Website", into: managedContext) as! Website
@@ -44,23 +44,23 @@ class WECreateWebsiteViewController: UIViewController, UITextFieldDelegate {
             website.addToPages(page)
             
             // Save
-            do{
+            do {
                 try managedContext.save()
-                if let delegate = delegate{
+                if let delegate = delegate {
                     delegate.refreshMyWebsite()
                 }
                 dismiss(animated: true, completion: nil)
-            }catch let error{
+            } catch let error {
                 // Handle error here
                 print(error.localizedDescription)
             }
         }
     }
     
-    @IBAction func cancel(_ sender: UIBarButtonItem){
-        if isCancellable{
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        if isCancellable {
             dismiss(animated: true, completion: nil)
-        }else{
+        } else {
             textField.text = ""
             textField.resignFirstResponder()
             enableDisableBarButton(isEnable: false)

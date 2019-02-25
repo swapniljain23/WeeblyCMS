@@ -33,8 +33,8 @@ class WEAddNewPageViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func save(_ sender: UIBarButtonItem){
-        if let text = pageTitle.text, !text.isEmpty, let myWebsite = myWebsite{
+    @IBAction func save(_ sender: UIBarButtonItem) {
+        if let text = pageTitle.text, !text.isEmpty, let myWebsite = myWebsite {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let managedContext = appDelegate.persistentContainer.viewContext
             
@@ -44,20 +44,20 @@ class WEAddNewPageViewController: UIViewController, UITextFieldDelegate {
             myWebsite.addToPages(page)
             
             // Save
-            do{
+            do {
                 try managedContext.save()
-                if let delegate = refreshWebsiteDelegate{
+                if let delegate = refreshWebsiteDelegate {
                     delegate.refreshMyWebsite()
                 }
                 dismiss(animated: true, completion: nil)
-            }catch let error{
+            } catch let error {
                 // Handle error here
                 print(error.localizedDescription)
             }
         }
     }
     
-    @IBAction func addElement(_ sender: UIBarButtonItem){
+    @IBAction func addElement(_ sender: UIBarButtonItem) {
         
     }
     
@@ -75,5 +75,4 @@ class WEAddNewPageViewController: UIViewController, UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

@@ -16,14 +16,15 @@ protocol WERefreshPage: AnyObject {
     func refreshMyPage()
 }
 
-enum eElementType: String{
+enum eElementType: String {
     case text = "text"
     case image = "image"
     case video = "video"
     case spacer = "spacer"
     case map = "map"
 }
-enum eOperationType{
+
+enum eOperationType {
     case create
     case edit
     case delete

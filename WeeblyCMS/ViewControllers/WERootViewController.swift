@@ -9,7 +9,11 @@
 import UIKit
 import CoreData
 
-class WERootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WERefreshWebsite, UITextFieldDelegate {
+class WERootViewController: UIViewController,
+                            UITableViewDataSource,
+                            UITableViewDelegate,
+                            UITextFieldDelegate,
+                            WERefreshWebsite {
 
     // MARK:- Properties
     var myWebsite: Website?
@@ -35,15 +39,15 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // MARK:- Load website
-    func refreshMyWebsite(){
+    func refreshMyWebsite() {
         
         // Set a website if already exist
-        if myWebsite == nil, let websites = fetchSavedWebsites(), websites.count > 0{
+        if myWebsite == nil, let websites = fetchSavedWebsites(), websites.count > 0 {
             myWebsite = websites[0]
         }
         
         // Guard against no website
-        guard let myWebsite = myWebsite, let websitePages = myWebsite.pages else{
+        guard let myWebsite = myWebsite, let websitePages = myWebsite.pages else {
             createNewWebsite()
             return
         }
@@ -53,33 +57,33 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
         print("My Website: \(String(describing: myWebsite.websiteName))")
         //websiteTitle.text = myWebsite.websiteName
         websiteTextField.text = myWebsite.websiteName
-        for page in websitePages{
+        for page in websitePages {
             let pageObj = page as! Page
             print("\tPAGE# \(pageObj.pageOrder): \(String(describing: pageObj.pageName))")
-            if let elements = pageObj.elements{
-                for element in elements{
+            if let elements = pageObj.elements {
+                for element in elements {
                     let elementObj = element as! Element
                     print("\t\tElement# \(elementObj.elementOrder): \(String(describing: elementObj.elementName)) -> \(String(describing: elementObj.elementDescription))")
                 }
             }
         }
         let descriptor = NSSortDescriptor(key: "pageOrder", ascending: true)
-        if let pages = myWebsite.pages{
+        if let pages = myWebsite.pages {
             myWebsitePages =  pages.sortedArray(using: [descriptor]) as! [Page]
         }
         tableView.reloadData()
     }
     
     // MARK:- Core data operations
-    func fetchSavedWebsites() -> [Website]?{
+    func fetchSavedWebsites() -> [Website]? {
         // Fetch
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        do{
+        do {
             return try managedContext.fetch(Website.fetchRequest())
-        }catch _ as NSError{
+        } catch _ as NSError {
             // Handle error
         }
         return nil
@@ -111,7 +115,8 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Push to modify page
-        let modifyPageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyPage") as! WEModifyPageViewController
+        let modifyPageVC =
+          UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ModifyPage") as! WEModifyPageViewController
         modifyPageVC.websitePage = myWebsitePages[indexPath.row]
         navigationController?.pushViewController(modifyPageVC, animated: true)
     }
@@ -125,21 +130,22 @@ class WERootViewController: UIViewController, UITableViewDataSource, UITableView
     
     // MARK:- Segue/Navigation methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier, identifier == "ToCreateNewPage"{
+        if let identifier = segue.identifier, identifier == "ToCreateNewPage" {
             let newPageVC = segue.destination as! WEAddNewPageViewController
             newPageVC.refreshWebsiteDelegate = self
             newPageVC.myWebsite = myWebsite
         }
     }
     
-    func createNewWebsite(){
+    func createNewWebsite() {
         // Prompt user to create first website
-        let createNewWebsiteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateNewWebsiteVC") as! WECreateWebsiteViewController
+        let createNewWebsiteVC =
+          UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateNewWebsiteVC") as! WECreateWebsiteViewController
         createNewWebsiteVC.delegate = self
         present(createNewWebsiteVC, animated: true, completion: nil)
     }
     
-    func updateWebsiteTitle(newTitle: String?){
+    func updateWebsiteTitle(newTitle: String?) {
         // update title
         myWebsite?.websiteName = newTitle
         

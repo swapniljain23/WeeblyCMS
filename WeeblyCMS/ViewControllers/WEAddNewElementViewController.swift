@@ -24,7 +24,7 @@ class WEAddNewElementViewController: UIViewController {
         super.viewDidLoad()
 
         // If its edit, then show the information
-        if operationType == .edit, let element = element{
+        if operationType == .edit, let element = element {
             elementNameTxtField.text = element.elementName
             elementDescTxtView.text = element.elementDescription
         }
@@ -36,9 +36,9 @@ class WEAddNewElementViewController: UIViewController {
     }
     
     // MARK:- IBAction
-    @IBAction func saveNewElement(_ sender: UIBarButtonItem){
+    @IBAction func saveNewElement(_ sender: UIBarButtonItem) {
         guard let elementName = elementNameTxtField.text, !elementName.isEmpty,
-            let elementDesc = elementDescTxtView.text, !elementDesc.isEmpty else{
+            let elementDesc = elementDescTxtView.text, !elementDesc.isEmpty else {
             return
         }
         
@@ -47,7 +47,8 @@ class WEAddNewElementViewController: UIViewController {
         
         switch operationType {
         case .create:
-            let element = NSEntityDescription.insertNewObject(forEntityName: "Element", into: managedContext) as! Element
+            let element = NSEntityDescription.insertNewObject(forEntityName: "Element",
+                                                                       into: managedContext) as! Element
             element.elementOrder = Int16(websitePage?.elements?.count ?? 0)
             element.elementType = eElementType.text.rawValue
             element.elementName = elementName
@@ -61,18 +62,18 @@ class WEAddNewElementViewController: UIViewController {
         }
         
         // Save
-        do{
+        do {
             try managedContext.save()
             dismiss(animated: true, completion: {
                 self.delegate?.refreshMyPage()
             })
-        }catch let error{
+        } catch let error {
             // Handle error here
             print(error.localizedDescription)
         }
     }
 
-    @IBAction func cancel(_ sender: UIBarButtonItem){
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
 }
